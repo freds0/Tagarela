@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>TAGARELA Dataset</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="TAGARELA - A Large-Scale Portuguese Speech Dataset from Podcasts with 8,972+ hours for ASR and TTS research">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" type="image/x-icon" href="favicons/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <style>
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+      .stat-card {
+        background: linear-gradient(135deg, #155799 0%, #159957 100%);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        text-align: center;
+      }
+      .stat-card h3 {
+        margin: 0;
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+      .stat-card p {
+        margin: 0.5rem 0 0 0;
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+      .pipeline-step {
+        display: flex;
+        align-items: flex-start;
+        margin: 1rem 0;
+        padding: 1rem;
+        background: #f6f8fa;
+        border-radius: 6px;
+        border-left: 4px solid #159957;
+      }
+      .pipeline-step-number {
+        background: #159957;
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-right: 1rem;
+        flex-shrink: 0;
+      }
+      .pipeline-step-content h4 {
+        margin: 0 0 0.5rem 0;
+        color: #155799;
+      }
+      .pipeline-step-content p {
+        margin: 0;
+        color: #606c71;
+      }
+      .benchmark-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+      }
+      .benchmark-table th, .benchmark-table td {
+        padding: 0.75rem 1rem;
+        text-align: left;
+        border-bottom: 1px solid #e1e4e8;
+      }
+      .benchmark-table th {
+        background: #f6f8fa;
+        font-weight: 600;
+        color: #155799;
+      }
+      .benchmark-table tr:hover {
+        background: #f6f8fa;
+      }
+      .best-result {
+        font-weight: bold;
+        color: #159957;
+      }
+      .citation-box {
+        background: #f6f8fa;
+        border: 1px solid #e1e4e8;
+        border-radius: 6px;
+        padding: 1rem;
+        font-family: 'Consolas', 'Monaco', monospace;
+        font-size: 0.85rem;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      .author-list {
+        line-height: 1.8;
+      }
+      .institution {
+        color: #606c71;
+        font-size: 0.9rem;
+      }
+      .subset-card {
+        border: 2px solid #e1e4e8;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+      }
+      .subset-card h4 {
+        color: #155799;
+        margin-top: 0;
+      }
+      .subset-card.full {
+        border-color: #155799;
+      }
+      .subset-card.clean {
+        border-color: #159957;
+      }
+      .tag {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .tag-asr {
+        background: #e3f2fd;
+        color: #1565c0;
+      }
+      .tag-tts {
+        background: #e8f5e9;
+        color: #2e7d32;
+      }
+      .section-divider {
+        border: 0;
+        height: 1px;
+        background: linear-gradient(to right, transparent, #e1e4e8, transparent);
+        margin: 3rem 0;
+      }
+      .coming-soon {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="page-header" class="page-header">
+        <div id="bg-header"></div>
+        <canvas id="demo-canvas"></canvas>
+        <div class="main-title">
+          <h1 class="project-name"><span><a href="index.html">TAGARELA</a></span></h1>
+          <h2 class="project-tagline">A Large-Scale Portuguese Speech Dataset from Podcasts</h2>
+        </div>
+    </section>
+
+    <section class="main-content">
+
+      <center>
+        <a href="#" class="btn2 coming-soon" title="Coming Soon">Dataset (Coming Soon)</a>
+        <a href="#" class="btn2 coming-soon" title="Coming Soon">Paper (Coming Soon)</a>
+        <a href="#" class="btn2 coming-soon" title="Coming Soon">Models (Coming Soon)</a>
+      </center>
+
+      <br><br>
+
+      <!-- Abstract -->
+      <h2>Abstract</h2>
+      <p>
+        Despite significant advances in speech processing, Portuguese remains under-resourced due to the scarcity of public, large-scale, and high-quality datasets. To address this gap, we present <strong>TAGARELA</strong>, a new dataset composed of over <strong>8,972 hours</strong> of podcast audio, specifically curated for training automatic speech recognition (ASR) and text-to-speech (TTS) models. Notably, its scale rivals English's GigaSpeech (10kh), enabling state-of-the-art Portuguese models.
+      </p>
+      <p>
+        To ensure data quality, the corpus was subjected to an audio preprocessing pipeline and subsequently transcribed using a mixed strategy: we applied ASR models that were previously trained on high-fidelity transcriptions generated by proprietary APIs, ensuring a high level of initial accuracy. Finally, to validate the effectiveness of this new resource, we present ASR and TTS models trained exclusively on our dataset and evaluate their performance, demonstrating its potential to drive the development of more robust and natural speech technologies for Portuguese.
+      </p>
+
+      <hr class="section-divider">
+
+      <!-- Statistics -->
+      <h2>Dataset Statistics</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>8,972+</h3>
+          <p>Hours of Audio</p>
+        </div>
+        <div class="stat-card">
+          <h3>16,806</h3>
+          <p>Podcast Episodes</p>
+        </div>
+        <div class="stat-card">
+          <h3>2,094</h3>
+          <p>Podcast Shows</p>
+        </div>
+        <div class="stat-card">
+          <h3>13,368</h3>
+          <p>Distinct Speakers</p>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+
+      <!-- Data Distribution -->
+      <h2>Data Distribution</h2>
+
+      <h3>By Dialect</h3>
+      <ul>
+        <li><strong>Brazilian Portuguese (pt-BR):</strong> 8,130 hours (91%)</li>
+        <li><strong>European Portuguese (pt-PT):</strong> 842 hours (9%)</li>
+      </ul>
+
+      <h3>By Gender</h3>
+      <ul>
+        <li><strong>Male speakers:</strong> 6,368 hours (70%)</li>
+        <li><strong>Female speakers:</strong> 2,604 hours (30%)</li>
+      </ul>
+
+      <h3>Segment Statistics</h3>
+      <ul>
+        <li><strong>Average duration:</strong> 9.30 ± 5.49 seconds</li>
+        <li><strong>Average words per segment:</strong> 27.69 ± 17.06 words</li>
+      </ul>
+
+      <hr class="section-divider">
+
+      <!-- Dataset Subsets -->
+      <h2>Dataset Subsets</h2>
+
+      <div class="subset-card full">
+        <h4>Full Subset</h4>
+        <span class="tag tag-asr">ASR</span>
+        <p><strong>8,972 hours</strong> - Includes audio containing various types of disfluencies, designed for robust automatic speech recognition training.</p>
+      </div>
+
+      <div class="subset-card clean">
+        <h4>Clean-Speech Subset</h4>
+        <span class="tag tag-tts">TTS</span>
+        <p><strong>2,800 hours</strong> - A curated speech-only subset designed for high-quality text-to-speech and speech generation tasks.</p>
+      </div>
+
+      <hr class="section-divider">
+
+      <!-- Pipeline -->
+      <h2>Processing Pipeline</h2>
+      <p>The TAGARELA dataset was created through a comprehensive multi-stage pipeline designed to ensure high quality and consistency:</p>
+
+      <div class="pipeline-step">
+        <div class="pipeline-step-number">1</div>
+        <div class="pipeline-step-content">
+          <h4>Audio Standardization</h4>
+          <p>All audio converted to FLAC format with 16kHz sample rate, 16-bit depth, mono channel.</p>
+        </div>
+      </div>
+
+      <div class="pipeline-step">
+        <div class="pipeline-step-number">2</div>
+        <div class="pipeline-step-content">
+          <h4>Segmentation</h4>
+          <p>Long-form recordings segmented into 5-20 second clips at natural silence points to maintain speech cohesiveness.</p>
+        </div>
+      </div>
+
+      <div class="pipeline-step">
+        <div class="pipeline-step-number">3</div>
+        <div class="pipeline-step-content">
+          <h4>Speaker Diarization</h4>
+          <p>Applied pyannote framework to identify and label speech segments for each speaker individually.</p>
+        </div>
+      </div>
+
+      <div class="pipeline-step">
+        <div class="pipeline-step-number">4</div>
+        <div class="pipeline-step-content">
+          <h4>Overlapping Speech Detection</h4>
+          <p>Trained Wav2vec2-XLS-R classifier to identify and discard segments with overlapping speech.</p>
+        </div>
+      </div>
+
+      <div class="pipeline-step">
+        <div class="pipeline-step-number">5</div>
+        <div class="pipeline-step-content">
+          <h4>Transcription Generation</h4>
+          <p>Bootstrap strategy using ElevenLabs Scribe for seed corpus, then fine-tuned Whisper large-v3 for pseudo-labeling with quality filtering via Wav2vec2-XLS-R agreement.</p>
+        </div>
+      </div>
+
+      <div class="pipeline-step">
+        <div class="pipeline-step-number">6</div>
+        <div class="pipeline-step-content">
+          <h4>Quality Enhancement</h4>
+          <p>Vocos vocoder repurposed as denoiser to remove background noise, hiss, and light reverberation.</p>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+
+      <!-- Benchmark Results -->
+      <h2>Benchmark Results</h2>
+
+      <h3>Automatic Speech Recognition (ASR)</h3>
+      <p>Models trained on TAGARELA and evaluated on Common Voice 17.0 (pt) test set:</p>
+      <table class="benchmark-table">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>WER (%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Canary-1B-Flash</td>
+            <td class="best-result">7.8</td>
+          </tr>
+          <tr>
+            <td>Distil-Whisper</td>
+            <td>9.2</td>
+          </tr>
+          <tr>
+            <td>Parakeet TDT</td>
+            <td>12.3</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Text-to-Speech (TTS)</h3>
+      <p>Models trained on the 2,800-hour clean-speech subset:</p>
+      <table class="benchmark-table">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>CER (%)</th>
+            <th>WER (%)</th>
+            <th>MOS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Orpheus-TTS</td>
+            <td class="best-result">19.32 ± 31.64</td>
+            <td class="best-result">26.81 ± 35.57</td>
+            <td>4.00 ± 0.94</td>
+          </tr>
+          <tr>
+            <td>Chatterbox</td>
+            <td>23.73 ± 26.17</td>
+            <td>31.50 ± 30.05</td>
+            <td class="best-result">4.53 ± 0.25</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <hr class="section-divider">
+
+      <!-- Citation -->
+      <h2>Citation</h2>
+      <p>If you use the TAGARELA dataset in your research, please cite:</p>
+      <div class="citation-box">@inproceedings{oliveira2026tagarela,
+  title={TAGARELA - A Portuguese Speech Dataset from Podcasts},
+  author={Oliveira, Frederico Santos de and Gris, Lucas Rafael Stefanel and
+          Ferreira, Alef Iury Siqueira and Rosa, Augusto Seben da and
+          Ferro Filho, Alexandre Costa and Casanova, Edresson and
+          Shulby, Christopher Dane and Sousa, Rafael Teixeira and
+          Silva, Diogo Fernandes Costa and Soares, Anderson da Silva and
+          Galv{\~a}o Filho, Arlindo Rodrigues},
+  booktitle={IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  year={2026}
+}</div>
+
+      <hr class="section-divider">
+
+      <!-- Authors -->
+      <h2>Authors</h2>
+      <div class="author-list">
+        <p>
+          <strong>Frederico Santos de Oliveira</strong><sup>1</sup>,
+          <strong>Lucas Rafael Stefanel Gris</strong><sup>2</sup>,
+          <strong>Alef Iury Siqueira Ferreira</strong><sup>2</sup>,
+          <strong>Augusto Seben da Rosa</strong><sup>3</sup>,
+          <strong>Alexandre Costa Ferro Filho</strong><sup>2</sup>,
+          <strong>Edresson Casanova</strong><sup>4</sup>,
+          <strong>Christopher Dane Shulby</strong><sup>5</sup>,
+          <strong>Rafael Teixeira Sousa</strong><sup>1</sup>,
+          <strong>Diogo Fernandes Costa Silva</strong><sup>2</sup>,
+          <strong>Anderson da Silva Soares</strong><sup>2</sup>,
+          <strong>Arlindo Rodrigues Galvão Filho</strong><sup>2</sup>
+        </p>
+        <p class="institution">
+          <sup>1</sup> Federal University of Mato Grosso (UFMT)<br>
+          <sup>2</sup> Federal University of Goias (UFG)<br>
+          <sup>3</sup> Paulista State University (UNESP)<br>
+          <sup>4</sup> NVIDIA<br>
+          <sup>5</sup> Elsa Speak
+        </p>
+      </div>
+
+      <hr class="section-divider">
+
+      <!-- Acknowledgements -->
+      <h2>Acknowledgements</h2>
+      <p>
+        This work has been fully funded by the project <em>Research and Development of Algorithms for Construction of Digital Human Technological Components</em> supported by the <strong>Advanced Knowledge Center in Immersive Technologies (AKCIT)</strong> in partnership with the Federal University of Goiás (UFG).
+      </p>
+
+      <footer class="site-footer">
+        <span class="site-footer-credits">TAGARELA Dataset - A contribution to Portuguese speech technology</span>
+      </footer>
+
+    </section>
+
+    <script src="js/animheader.js"></script>
+
+  </body>
+</html>
