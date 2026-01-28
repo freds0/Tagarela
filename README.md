@@ -2,7 +2,7 @@
 
 **A Large-Scale Portuguese Speech Dataset from Podcasts**
 
-[Web Page](https://freds0.github.io/Tagarela/)
+[Web Page](https://freds0.github.io/TAGARELA/)
 
 TAGARELA (/ta.ga.ˈRE.la/) is a large-scale Portuguese speech dataset curated from the "Cem Mil Podcasts" collection, designed for training automatic speech recognition (ASR) and text-to-speech (TTS) models.
 
